@@ -14,4 +14,8 @@ defmodule Trendutils do
   def findTrend() do
     []
   end
+
+  def findTrend([]) do
+    []
+  end
 end
