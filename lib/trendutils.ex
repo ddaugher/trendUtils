@@ -22,19 +22,15 @@ defmodule Trendutils do
   """
   def find_trend([]), do: 0.0
   def find_trend([_]), do: 0.0
-  def find_trend(list), do: accumulateValue(list)
+  def find_trend(list), do: accumulate_value(list)
 
-  defp accumulateValue(list) do
+  defp accumulate_value(list) do
     Enum.zip(list, tl(list))
-    |> Enum.map(fn {left, right} -> calculateTupleValue(left, right) end)
+    |> Enum.map(fn {left, right} -> calculate_tuple_value(left, right) end)
     |> Enum.sum
   end
 
-  defp calculateTupleValue(left, right) do
-    cond do
-      left == 0.0 && right == 0.0 -> 0.0
-      left == 0.0 && right > 0.0 -> 1.0
-      true -> (right - left) / left
-    end
-  end
+  defp calculate_tuple_value(0.0, 0.0), do: 0.0
+  defp calculate_tuple_value(0.0, right), do: 1.0
+  defp calculate_tuple_value(left, right), do: (right - left) / left
 end
