@@ -7,11 +7,8 @@ defmodule Trendutils do
 
   ## Examples
 
-      iex> Trendutils.findTrend()
-      nil
-
       iex> Trendutils.findTrend([])
-      nil
+      0.0
 
       iex> Trendutils.findTrend([90.0])
       0.0
@@ -23,17 +20,9 @@ defmodule Trendutils do
       2.8333333333333335
 
   """
-  def findTrend() do
-    nil
-  end
-
-  def findTrend(list) do
-    cond do
-      Enum.count(list) == 1 -> 0.0
-      Enum.count(list) >= 2 -> accumulateValue(list)
-      true -> nil
-    end
-  end
+  def findTrend([]), do: 0.0
+  def findTrend([_]), do: 0.0
+  def findTrend(list), do: accumulateValue(list)
 
   defp accumulateValue(list) do
     Enum.zip(list, tl(list))

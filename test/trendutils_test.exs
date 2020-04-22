@@ -2,12 +2,8 @@ defmodule TrendutilsTest do
   use ExUnit.Case
   doctest Trendutils
 
-  test "should return nil when list is nil" do
-    assert Trendutils.findTrend() == nil
-  end
-
-  test "should return nil when list is empty" do
-    assert Trendutils.findTrend([]) == nil
+  test "should return zero when list is empty" do
+    assert Trendutils.findTrend([]) == 0.0
   end
 
   test "should return zero when list of only one number" do
