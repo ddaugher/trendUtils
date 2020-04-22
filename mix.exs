@@ -3,7 +3,7 @@ defmodule TrendtUtils.MixProject do
 
   def project do
     [
-      app: :trendutils,
+      app: :trend_utils,
       version: "0.1.1",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
