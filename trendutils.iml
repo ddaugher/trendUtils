@@ -7,8 +7,13 @@
       <sourceFolder url="file://$MODULE_DIR$/lib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/earmark" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/ex_doc" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/file_system" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/makeup" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/makeup_elixir" />
       <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/mix_test_watch" />
+      <excludeFolder url="file://$MODULE_DIR$/_build/dev/lib/nimble_parsec" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/file_system" />
       <excludeFolder url="file://$MODULE_DIR$/_build/test/lib/mix_test_watch" />
       <excludeFolder url="file://$MODULE_DIR$/assets/node_modules/phoenix" />
@@ -23,5 +28,13 @@
     <orderEntry type="library" name="file_system" level="project" />
     <orderEntry type="library" name="temporary_env" level="project" />
     <orderEntry type="library" name="ex_doc" level="project" />
+    <orderEntry type="library" name="earmark" level="project" />
+    <orderEntry type="library" name="makeup_elixir" level="project" />
+    <orderEntry type="library" name="cmark" level="project" />
+    <orderEntry type="library" name="excoveralls" level="project" />
+    <orderEntry type="library" name="makeup" level="project" />
+    <orderEntry type="library" name="benchee" level="project" />
+    <orderEntry type="library" name="nimble_parsec" level="project" />
+    <orderEntry type="library" name="stream_data" level="project" />
   </component>
 </module>
