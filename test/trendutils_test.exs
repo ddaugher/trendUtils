@@ -2,126 +2,79 @@ defmodule TrendutilsTest do
   use ExUnit.Case
   doctest Trendutils
 
-  test "should return null when list is empty" do
-    assert Trendutils.findTrend() == []
+  test "should return nil when list is nil" do
+    assert Trendutils.findTrend() == nil
   end
 
-  test "should return null when list is null" do
-    assert Trendutils.findTrend([]) == []
+  test "should return nil when list is empty" do
+    assert Trendutils.findTrend([]) == nil
+  end
+
+  test "should return zero when list of only one number" do
+    assert Trendutils.findTrend([90.0]) == 0.0
+  end
+
+  test "should return 0.0 when list of two numbers equal to each other" do
+    assert Trendutils.findTrend([50.0, 50.0]) == 0.0
+  end
+
+  test "should return proper percentage when list of two numbers increasing" do
+    assert Trendutils.findTrend([90.0, 100.0]) == 0.1111111111111111
+  end
+
+  test "should return proper percentage when list of three numbers increasing" do
+    assert Trendutils.findTrend([90.0, 100.0, 110.0]) == 0.2111111111111111
+  end
+
+  test "should return proper percentage when list of three different numbers increasing" do
+    assert Trendutils.findTrend([20.0, 60.0, 110.0]) == 2.8333333333333335
+  end
+
+  test "should return proper value when list of four different numbers increasing" do
+    assert Trendutils.findTrend([20.0, 60.0, 110.0, 150.0]) == 3.1969696969696972
+  end
+
+  test "should return proper value when list of two numbers decreasing" do
+    assert Trendutils.findTrend([100.0, 90.0]) == -0.1
+  end
+
+  test "should return proper value when list of three numbers descreasing" do
+    assert Trendutils.findTrend([110.0, 100.0, 90.0]) == -0.19090909090909092
+  end
+
+  test "should return proper value when first number is zero and second is positive" do
+    assert Trendutils.findTrend([0.0, 50.0]) == 1.0
+  end
+
+  test "should return proper value when first number is zero and second number is zero" do
+    assert Trendutils.findTrend([0.0, 0.0]) == 0.0
+  end
+
+  test "should return zero when both numbers are equal" do
+    assert Trendutils.findTrend([10.0, 10.0]) == 0.0
+  end
+
+  test "should return proper value when first number is zero" do
+    assert Trendutils.findTrend([0.0, 50.0, 60.0]) == 1.2
+  end
+
+  test "should return proper value when all zeroes" do
+    assert Trendutils.findTrend([0.0, 0.0, 0.0]) == 0.0
+  end
+
+  test "should when fluxuation up and down" do
+    assert Trendutils.findTrend([10.0, 20.0, 10.0]) == 0.5
+  end
+
+  test "should handle real world example" do
+    assert Trendutils.findTrend([2556.0, 1160.0, 1050.0, 369.0]) == -1.2895648989723782
+  end
+
+  test "should handle another real world example" do
+    assert Trendutils.findTrend([876.0, 920.0, 920.0, 920.0]) == 0.0502283105022831
+  end
+
+  test "should handle real world example 3" do
+    assert Trendutils.findTrend([0.35530768392370576, 0.38223999999999997, 0.38223999999999997]) == 0.07579998208560361
   end
 end
-
-
-
-#@Test
-#void shouldReturnZeroWhenListOfOnlyOneNumber() {
-#                                               def l = [90.0d]
-#
-#assert 0.0d == TrendUtils.findTrend(l)
-#                                   }
-#
-#                                   @Test
-#void shouldReturnProperPercentageWhenListOfTwoNumbersIncreasing() {
-#def l = [90.0d, 100.0d]
-#
-#assert 0.1111111111111111 == TrendUtils.findTrend(l)
-#                                                 }
-#
-#                                                 @Test
-#                                                 void shouldReturnProperPercentageWhenListOfThreeNumbersIncreasing() {
-#                                                      def l = [90.0d, 100.0d, 110.0d]
-#
-#                                                                                 assert 0.2111111111111111 == TrendUtils.findTrend(l)
-#                                                                                                              }
-#
-#                                                                                 @Test
-#                                                                                 void shouldReturnProperPercentageWhenListOfThreeDifferentNumbersIncreasing() {
-#                                                                                 def l = [20.0d, 60.0d, 110.0d]
-#
-#                                                                                                    assert 2.8333333333333335 == TrendUtils.findTrend(l)
-#                                                                                                                                                       }
-#
-#                                                                                                                                                       @Test
-#                                                                                                                                                       void shouldReturnProperPercentageWhenListOfFourDifferentNumbersIncreasing() {
-#                                                                                                                                                                                                                                def l = [20.0d, 60.0d, 110.0d, 150.0d]
-#
-#                                                                                                                                                                                                                                                            assert 3.1969696969696972 == TrendUtils.findTrend(l)
-#                                                                                                                                                                                                                                                                    }
-#
-#                                                                                                                                                                                                                                                                    @Test
-#                                                                                                                                                                                                                                                                    void shouldReturnProperPercentageWhenListOfTwoNumbersDecreasing() {
-#                                                                                                                                                                                                                                                                                                                                    def l = [100.0d, 90.0d]
-#
-#                                                                                                                                                                                                                                                                                                                                                     assert -0.1 == TrendUtils.findTrend(l)
-#                                                                                                                                                                                                                                                                                                                                                                                          }
-#
-#                                                                                                                                                                                                                                                                                                                                                                                          @Test
-#                                                                                                                                                                                                                                                                                                                                                                                          void shouldReturnProperPercentageWhenListOfThreeNumbersDecreasing() {
-#                                                                                                                                                                                                                                                                                                                                                                                                                                                           def l = [110.0d, 100.0d, 90.0d]
-#
-#                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        assert -0.19090909090909092 == TrendUtils.findTrend(l)
-#                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       }
-#
-#@Test
-#void shouldReturnProperPercentWhenFirstNumberIsZeroAndSecondNumberIsPositive() {
-#def l = [0.0d, 50.0d]
-#
-#                  assert 1.0d == TrendUtils.findTrend(l)
-#                                 }
-#
-#@Test
-#void shouldReturnProperPercentWhenFirstNumberIsZeroAndSecondNumberIsZero() {
-#def l = [0.0d, 0.0d]
-#
-#                 assert 0.0d == TrendUtils.findTrend(l)
-#                                }
-#
-#@Test
-#void shouldReturnZeroWhenBothNumbersAreEqual() {
-#def l = [10.0d, 10.0d]
-#
-#                   assert 0.0d == TrendUtils.findTrend(l)
-#                                  }
-#
-#                   @Test
-#                   void shouldReturnProperPercentWhenFirstNumberIsZero() {
-#                   def l = [0.0d, 50.0d, 60.0d]
-#
-#                                     assert 1.2d == TrendUtils.findTrend(l)
-#                                                                         }
-#
-#                                                                         @Test
-#                                                                         void shouldReturnProperPercentWhenAllZeroes() {
-#                                                                                                                    def l = [0.0d, 0.0d, 0.0d]
-#
-#                                                                                                                                           assert 0.0d == TrendUtils.findTrend(l)
-#                                                                                                                                                          }
-#
-#                                                                                                                                                          @Test
-#                                                                                                                                                          void shouldReturnProperTrendWhenFluxuationUpAndDown() {
-#                                                                                                                                                          def l = [10.0d, 20.0d, 10.0d]
-#
-#                                                                                                                                                                             assert 0.5d == TrendUtils.findTrend(l)
-#                                                                                                                                                                                                                 }
-#
-#                                                                                                                                                                                                                 @Test
-#                                                                                                                                                                                                                 void shouldHandleRealWorldExample1() {
-#                                                                                                                                                                                                                                                   def l = [2556.0d, 1160.0d, 1050.0d, 369.0d]
-#
-#                                                                                                                                                                                                                                                                                   assert -1.2895648989723782 == TrendUtils.findTrend(l)
-#                                                                                                                                                                                                                                                                                                                                     }
-#
-#                                                                                                                                                                                                                                                                                                                                     @Test
-#                                                                                                                                                                                                                                                                                                                                     void shouldHandleRealWorldExample2() {
-#                                                                                                                                                                                                                                                                                                                                          def l = [876.0d, 920.0d, 920.0d, 920.0d]
-#
-#assert 0.0502283105022831 == TrendUtils.findTrend(l)
-#                                                  }
-#
-#                                                  @Test
-#                                                  void shouldHandleRealWorldExample3() {
-#                                                                                    def l = [0.35530768392370576, 0.38223999999999997, 0.38223999999999997]
-#
-#assert 0.07579998208560362 == TrendUtils.findTrend(l)
-#}
-#
