@@ -7,22 +7,22 @@ defmodule Trendutils do
 
   ## Examples
 
-      iex> Trendutils.findTrend([])
+      iex> Trendutils.find_trend([])
       0.0
 
-      iex> Trendutils.findTrend([90.0])
+      iex> Trendutils.find_trend([90.0])
       0.0
 
-      iex> Trendutils.findTrend([50.0, 50.0])
+      iex> Trendutils.find_trend([50.0, 50.0])
       0.0
 
-      iex> Trendutils.findTrend([20.0, 60.0, 110.0])
+      iex> Trendutils.find_trend([20.0, 60.0, 110.0])
       2.8333333333333335
 
   """
-  def findTrend([]), do: 0.0
-  def findTrend([_]), do: 0.0
-  def findTrend(list), do: accumulateValue(list)
+  def find_trend([]), do: 0.0
+  def find_trend([_]), do: 0.0
+  def find_trend(list), do: accumulateValue(list)
 
   defp accumulateValue(list) do
     Enum.zip(list, tl(list))
