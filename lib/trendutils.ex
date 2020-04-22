@@ -1,22 +1,22 @@
-defmodule Trendutils do
+defmodule TrendUtils do
   @moduledoc """
-  Documentation for `Trendutils`.
+  Documentation for `TrendUtils`.
   """
 
   @doc ~S"""
 
   ## Examples
 
-      iex> Trendutils.find_trend([])
+      iex> TrendUtils.find_trend([])
       0.0
 
-      iex> Trendutils.find_trend([90.0])
+      iex> TrendUtils.find_trend([90.0])
       0.0
 
-      iex> Trendutils.find_trend([50.0, 50.0])
+      iex> TrendUtils.find_trend([50.0, 50.0])
       0.0
 
-      iex> Trendutils.find_trend([20.0, 60.0, 110.0])
+      iex> TrendUtils.find_trend([20.0, 60.0, 110.0])
       2.8333333333333335
 
   """
@@ -31,6 +31,6 @@ defmodule Trendutils do
   end
 
   defp calculate_tuple_value(0.0, 0.0), do: 0.0
-  defp calculate_tuple_value(0.0, right), do: 1.0
+  defp calculate_tuple_value(0.0, _right), do: 1.0
   defp calculate_tuple_value(left, right), do: (right - left) / left
 end

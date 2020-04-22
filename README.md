@@ -1,4 +1,4 @@
-# Trendutils
+# TrendUtils
 
 ## Description
 This algorithm is weighted towards non-zero values and numbers in the series that are changing.  A value of zero
